@@ -1,0 +1,66 @@
+from time import time
+from docx import Document #需要安装docx插件 pip install python-docx 
+import re
+from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.shared import Cm, Pt
+
+
+file = open('C:\wordpl\data.txt', 'rb') #数据表（）
+data = file.read()
+final_data = data.decode('ansi')#编码
+
+data_list = final_data.split()
+
+# print(data_list[])·
+
+
+docc = Document('C:\wordpl\jxdg.docx') #原始文件位置
+tab = docc.tables[0]
+
+a = 0
+while a < len(data_list):
+    docc = Document('C:\wordpl\jxdg.docx')
+    tab = docc.tables[0]
+
+    cel_1 = tab.cell(6, 1)
+    if 'song_name' in cel_1.text:
+
+        print(cel_1.text)
+        cel_1.text = cel_1.text.replace('song_name', data_list[a])
+
+    cel_2 = tab.cell(2, 1)
+    if 'song_name' in cel_2.text:
+
+        print(cel_2.text)
+        cel_2.text = cel_2.text.replace('song_name', data_list[a])
+
+    cel_3 = tab.cell(3, 1)
+    if 'song_name' in cel_3.text:
+
+        print(cel_3.text)
+        cel_3.text = cel_3.text.replace('song_name', data_list[a])
+
+    cel_4 = tab.cell(4, 1)
+    if 'song_name' in cel_4.text:
+
+        print(cel_4.text)
+        cel_4.text = cel_4.text.replace('song_name', data_list[a])
+
+    cel_5 = tab.cell(5, 1)
+    if 'song_name' in cel_5.text:
+
+        print(cel_5.text)
+        cel_5.text = cel_5.text.replace('song_name', data_list[a])
+
+    a += 1
+
+    cel_6 = tab.cell(0, 0)
+
+    if 'student_name' in cel_6.text:
+        print(cel_6.text)
+        cel_6.text = cel_6.text.replace('student_name', data_list[a])
+
+    docc.save("C:\wordpl\over/"+data_list[a]+"教学大纲.docx") #存储位置
+    print('save')
+    a += 1
+file.close()
